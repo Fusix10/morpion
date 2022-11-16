@@ -12,8 +12,8 @@ encore = 0
 colonneUn = [ligneUn[1],ligneDeux[1],ligneTrois[1]]
 colonneDeux = [ligneUn[2],ligneDeux[2],ligneTrois[2]]
 colonneTrois = [ligneUn[3],ligneDeux[3],ligneTrois[3]]
-diagoUn = [ligneUn[1],ligneDeux[2],ligneTrois[3]]
-diagoDeux = [ligneUn[3],ligneDeux[2],ligneTrois[1]]
+diagoUn = [colonneUn[0],colonneDeux[1],colonneTrois[2]]
+diagoDeux = [colonneUn[2],colonneDeux[1],colonneTrois[0]]
 
 Jun = 0
 Jdeux = 0
@@ -27,31 +27,31 @@ cccc = Tableau[3]
 
 print(u);print(aa);print(bbb);print(cccc)
 
-def Restart():
-    coordonne = ['',"A","B","C"]
-    ligneUn =["1","","",""]
-    ligneDeux =["2","","",""]
-    ligneTrois =["3","","",""]
-    compteTour = 0
-    encore = 0
+# def Restart():
+#     coordonne = ['',"A","B","C"]
+#     ligneUn =["1","","",""]
+#     ligneDeux =["2","","",""]
+#     ligneTrois =["3","","",""]
+#     compteTour = 0
+#     encore = 0
 
-    colonneUn = [ligneUn[1],ligneDeux[1],ligneTrois[1]]
-    colonneDeux = [ligneUn[2],ligneDeux[2],ligneTrois[2]]
-    colonneTrois = [ligneUn[3],ligneDeux[3],ligneTrois[3]]
-    diagoUn = [ligneUn[1],ligneDeux[2],ligneTrois[3]]
-    diagoDeux = [ligneUn[3],ligneDeux[2],ligneTrois[1]]
+#     colonneUn = [ligneUn[1],ligneDeux[1],ligneTrois[1]]
+#     colonneDeux = [ligneUn[2],ligneDeux[2],ligneTrois[2]]
+#     colonneTrois = [ligneUn[3],ligneDeux[3],ligneTrois[3]]
+#     diagoUn = [colonneUn[0],colonneDeux[1],colonneTrois[2]]
+#     diagoDeux = [colonneUn[2],colonneDeux[1],colonneTrois[0]]
 
-    Jun = 0
-    Jdeux = 0
-    gagnant = 10
+#     Jun = 0
+#     Jdeux = 0
+#     gagnant = 10
 
-    Tableau = [coordonne,ligneUn,ligneDeux,ligneTrois]
-    u = Tableau[0]
-    aa = Tableau[1]
-    bbb = Tableau[2]
-    cccc = Tableau[3]
+#     Tableau = [coordonne,ligneUn,ligneDeux,ligneTrois]
+#     u = Tableau[0]
+#     aa = Tableau[1]
+#     bbb = Tableau[2]
+#     cccc = Tableau[3]
 
-    print(u);print(aa);print(bbb);print(cccc)
+#     print(u);print(aa);print(bbb);print(cccc)
 
 def winner():
     global ligneDeux
@@ -97,8 +97,18 @@ def winner():
         gagnant = 2
     elif compteTour == 9:
         gagnant = 0
+    print(diagoUn)
 
 def coupJoueur():
+    global ligneDeux
+    global ligneUn
+    global ligneTrois
+    global colonneDeux
+    global colonneUn
+    global colonneTrois
+    global diagoDeux
+    global diagoUn
+    global gagnant
     Reponse = input("mettre les coordonné : ")
     if not Reponse in ["a1","a2","a3","A1","A2","A3","b1","b2","b3","B1","B2","B3","c1","c2","c3","C1","C2","C3"]:
         print("réponse inconrectte")
@@ -204,6 +214,7 @@ def coupJoueur():
                     ligneTrois[3] ="o"
             else:
                 print("erreur")
+    print(diagoUn)
             
 def StarterGame():
     global Jun
@@ -234,21 +245,21 @@ def StarterGame():
         print("joueur 1 (ps celui qui a les x ) est gagnant, ps le joueur 2 tes nul")
     elif gagnant == 2:
         print("le joueur 2 (ps celui qui a les o ) est gagnant, ps le joueur 1 tes nul")
-    print("yo bande de débile tu veux retenter ?")
-    encore = input("-1 = retenter || -2 = j'abandone car jsui nul")
-    while 1:
-        if not encore in [1,2]:
-            print("te fous pas dma geu ptit batard mes 1 ou 2 et pas : ",encore)
-            print("yo bande de débile tu veux retenter ?")
-            encore = input("-1 = retenter || -2 = j'abandone car jsui nul")
-        elif encore in [1,2]:
-            if encore == 1:
-                print("oki Dinosaure ON RESTARTTTTTTTRE")
-                Restart()
-                StarterGame()
-            elif encore == 2:
-                print("NNNNNNNNNNNNNNOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOBBBBBBBBBBBBBB")
-                return
+    # print("yo bande de débile tu veux retenter ?")
+    # encore = input("-1 = retenter || -2 = j'abandone car jsui nul")
+    # while 1:
+    #     if not encore in [1,2]:
+    #         print("te fous pas dma geu ptit batard mes 1 ou 2 et pas : ",encore)
+    #         print("yo bande de débile tu veux retenter ?")
+    #         encore = input("-1 = retenter || -2 = j'abandone car jsui nul")
+    #     elif encore in [1,2]:
+    #         if encore == 1:
+    #             print("oki Dinosaure ON RESTARTTTTTTTRE")
+    #             Restart()
+    #             StarterGame()
+    #         elif encore == 2:
+    #             print("NNNNNNNNNNNNNNOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOBBBBBBBBBBBBBB")
+    #             return
 
 
 
