@@ -187,21 +187,28 @@ def StarterGame():
     global gagnant
     global compteTour
     while not gagnant in [0,1,2]:
-        Jun = Jdeux + 1
-        coupJoueur()
-        compteTour = compteTour + 1
-        Jdeux = Jun + 1
-        print(u);print(aa);print(bbb);print(cccc)
-        winner()
-        print(compteTour)
-        print(gagnant)
-        coupJoueur()
-        compteTour = compteTour + 1
-        print(u);print(aa);print(bbb);print(cccc)
-        winner()
-        print(compteTour)
-        print(gagnant)
-
+        if not gagnant in [0,1,2]:
+            Jun = Jdeux + 1
+            coupJoueur()
+            compteTour = compteTour + 1
+            print(u);print(aa);print(bbb);print(cccc)
+            winner()
+            print(compteTour)
+            print(gagnant)
+        if not gagnant in [0,1,2]:   
+            Jdeux = Jun + 1
+            coupJoueur()
+            compteTour = compteTour + 1
+            print(u);print(aa);print(bbb);print(cccc)
+            winner()
+            print(compteTour)
+            print(gagnant)
+    if gagnant == 0:
+        print("matche nul, vous êtes nul !")
+    if gagnant == 1:
+        print("joueur 1 (ps celui qui a les x ) est gagnant, ps le joueur 2 tes nul")
+    if gagnant == 2:
+        print("le joueur 2 (ps celui qui a les o ) est gagnant, ps le joueur 1 tes nul")
 
             
 StarterGame()
