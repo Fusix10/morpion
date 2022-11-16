@@ -2,20 +2,77 @@
 
 #deffinir la fonction StartGame
 #initialisation d'un tableau dans un tableau de 3 colone et 3 ligne (BaseMorpion = ([0,1,2],[0,1,2],[0,1,2]))
+coordonne = ['',"A","B","C"]
 ligneUn =["1","","",""]
 ligneDeux =["2","","",""]
 ligneTrois =["3","","",""]
-coordonne = ['',"A","B","C"]
+compteTour = 0
+
+colonneUn = [ligneUn[1],ligneDeux[1],ligneTrois[1]]
+colonneDeux = [ligneUn[2],ligneDeux[2],ligneTrois[2]]
+colonneTrois = [ligneUn[3],ligneDeux[3],ligneTrois[3]]
+diagoUn = [ligneUn[1],ligneDeux[2],ligneTrois[3]]
+diagoDeux = [ligneUn[3],ligneDeux[2],ligneTrois[1]]
+
 Jun = 0
 Jdeux = 0
+gagnant = 10
 
-colonne = [coordonne,ligneUn,ligneDeux,ligneTrois]
-u = colonne[0]
-aa = colonne[1]
-bbb = colonne[2]
-cccc = colonne[3]
+Tableau = [coordonne,ligneUn,ligneDeux,ligneTrois]
+u = Tableau[0]
+aa = Tableau[1]
+bbb = Tableau[2]
+cccc = Tableau[3]
 
 print(u);print(aa);print(bbb);print(cccc)
+
+def winner():
+    global ligneDeux
+    global ligneUn
+    global ligneTrois
+    global colonneDeux
+    global colonneUn
+    global colonneTrois
+    global diagoDeux
+    global diagoUn
+    global gagnant
+    if ligneUn[1] == "x" and ligneUn[2] == "x" and ligneUn[3] == "x":
+        gagnant = 1
+    elif ligneDeux[1] == "x" and ligneDeux[2] == "x" and ligneDeux[3] == "x":
+        gagnant = 1
+    elif ligneTrois[1] == "x" and ligneTrois[2] == "x" and ligneTrois[3] == "x":
+        gagnant = 1
+    elif colonneUn[0] == "x" and colonneUn[1] == "x" and colonneUn[2] == "x":
+        gagnant = 1
+    elif colonneDeux[0] == "x" and colonneDeux[1] == "x" and colonneDeux[2] == "x":
+        gagnant = 1
+    elif colonneTrois[0] == "x" and colonneTrois[1] == "x" and colonneTrois[2] == "x":
+        gagnant = 1
+    elif diagoUn[0] == "x" and diagoUn[1] == "x" and diagoUn[2] == "x":
+        gagnant = 1
+    elif diagoDeux[0] == "x" and diagoDeux[1] == "x" and diagoDeux[2] == "x":
+        gagnant = 1
+    elif ligneUn[1] == "o" and ligneUn[2] == "o" and ligneUn[3] == "o":
+        gagnant = 2
+    elif ligneDeux[1] == "o" and ligneDeux[2] == "o" and ligneDeux[3] == "o":
+        gagnant = 2
+    elif ligneTrois[1] == "o" and ligneTrois[2] == "o" and ligneTrois[3] == "o":
+        gagnant = 2
+    elif colonneUn[0] == "o" and colonneUn[1] == "o" and colonneUn[2] == "o":
+        gagnant = 2
+    elif colonneDeux[0] == "o" and colonneDeux[1] == "o" and colonneDeux[2] == "o":
+        gagnant = 2
+    elif colonneTrois[0] == "o" and colonneTrois[1] == "o" and colonneTrois[2] == "o":
+        gagnant = 2
+    elif diagoUn[0] == "o" and diagoUn[1] == "o" and diagoUn[2] == "o":
+        gagnant = 2
+    elif diagoDeux[0] == "o" and diagoDeux[1] == "o" and diagoDeux[2] == "o":
+        gagnant = 2
+    elif compteTour == 9:
+        gagnant = 0
+
+
+
 
 def coupJoueur():
     Reponse = input("mettre les coordonné : ")
@@ -127,12 +184,24 @@ def coupJoueur():
 def StarterGame():
     global Jun
     global Jdeux
-    Jun = Jdeux + 1
-    coupJoueur()
-    Jdeux = Jun + 1
-    print(u);print(aa);print(bbb);print(cccc)
-    coupJoueur()
-    print(u);print(aa);print(bbb);print(cccc)
+    global gagnant
+    global compteTour
+    while not gagnant in [0,1,2]:
+        Jun = Jdeux + 1
+        coupJoueur()
+        compteTour = compteTour + 1
+        Jdeux = Jun + 1
+        print(u);print(aa);print(bbb);print(cccc)
+        winner()
+        print(compteTour)
+        print(gagnant)
+        coupJoueur()
+        compteTour = compteTour + 1
+        print(u);print(aa);print(bbb);print(cccc)
+        winner()
+        print(compteTour)
+        print(gagnant)
+
 
             
 StarterGame()
