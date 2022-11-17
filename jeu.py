@@ -3,7 +3,15 @@
 import pygame
 pygame.init()
 from pygame.locals import *
-#initialisation d'un tableau dans un tableau de 3 colone et 3 ligne (BaseMorpion = ([0,1,2],[0,1,2],[0,1,2]))
+fenetre = pygame.display.set_mode((1200, 1200))
+interface = True
+while interface:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            interface = False
+
+pygame.quit()
+
 coordonne = ['',"A","B","C"]
 ligneUn =["1","","",""]
 ligneDeux =["2","","",""]
