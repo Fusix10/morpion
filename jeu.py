@@ -25,33 +25,61 @@ aa = Tableau[1]
 bbb = Tableau[2]
 cccc = Tableau[3]
 
-print(u);print(aa);print(bbb);print(cccc)
+def Restart():
+    global ligneDeux
+    global ligneUn
+    global ligneTrois
+    global colonneDeux
+    global colonneUn
+    global colonneTrois
+    global diagoDeux
+    global diagoUn
+    global gagnant
+    global Jun
+    global Jdeux
+    global compteTour
+    global encore
+    global u
+    global aa
+    global bbb
+    global cccc
+    print("yo bande de débile tu veux retenter ?")
+    encore = input("-1 = retenter || -2 = j'abandone car jsui nul: ")
+    if not encore in ['1','2']:
+        print("te fous pas dma geu ptit batard mes 1 ou 2 et pas : ",encore)
+        print("yo bande de débile tu veux retenter ?")
+        Restart()
+    elif encore in ['1','2']:
+        if encore == '1':
+            print("oki Dinosaure ON RESTARTTTTTTTRE")
+            coordonne = ['',"A","B","C"]
+            ligneUn =["1","","",""]
+            ligneDeux =["2","","",""]
+            ligneTrois =["3","","",""]
+            compteTour = 0
+            encore = 0
 
-# def Restart():
-#     coordonne = ['',"A","B","C"]
-#     ligneUn =["1","","",""]
-#     ligneDeux =["2","","",""]
-#     ligneTrois =["3","","",""]
-#     compteTour = 0
-#     encore = 0
+            colonneUn = [ligneUn[1],ligneDeux[1],ligneTrois[1]]
+            colonneDeux = [ligneUn[2],ligneDeux[2],ligneTrois[2]]
+            colonneTrois = [ligneUn[3],ligneDeux[3],ligneTrois[3]]
+            diagoUn = [colonneUn[0],colonneDeux[1],colonneTrois[2]]
+            diagoDeux = [colonneUn[2],colonneDeux[1],colonneTrois[0]]
 
-#     colonneUn = [ligneUn[1],ligneDeux[1],ligneTrois[1]]
-#     colonneDeux = [ligneUn[2],ligneDeux[2],ligneTrois[2]]
-#     colonneTrois = [ligneUn[3],ligneDeux[3],ligneTrois[3]]
-#     diagoUn = [colonneUn[0],colonneDeux[1],colonneTrois[2]]
-#     diagoDeux = [colonneUn[2],colonneDeux[1],colonneTrois[0]]
+            Jun = 0
+            Jdeux = 0
+            gagnant = 10
 
-#     Jun = 0
-#     Jdeux = 0
-#     gagnant = 10
+            Tableau = [coordonne,ligneUn,ligneDeux,ligneTrois]
+            u = Tableau[0]
+            aa = Tableau[1]
+            bbb = Tableau[2]
+            cccc = Tableau[3]
 
-#     Tableau = [coordonne,ligneUn,ligneDeux,ligneTrois]
-#     u = Tableau[0]
-#     aa = Tableau[1]
-#     bbb = Tableau[2]
-#     cccc = Tableau[3]
+            StarterGame()
 
-#     print(u);print(aa);print(bbb);print(cccc)
+        elif encore == '2':
+            print("NNNNNNNNNNNNNNOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOBBBBBBBBBBBBBB")
+            return
 
 def winner():
     global ligneDeux
@@ -63,6 +91,13 @@ def winner():
     global diagoDeux
     global diagoUn
     global gagnant
+
+    colonneUn = [ligneUn[1],ligneDeux[1],ligneTrois[1]]
+    colonneDeux = [ligneUn[2],ligneDeux[2],ligneTrois[2]]
+    colonneTrois = [ligneUn[3],ligneDeux[3],ligneTrois[3]]
+    diagoUn = [colonneUn[0],colonneDeux[1],colonneTrois[2]]
+    diagoDeux = [colonneUn[2],colonneDeux[1],colonneTrois[0]]
+
     if ligneUn[1] == "x" and ligneUn[2] == "x" and ligneUn[3] == "x":
         gagnant = 1
     elif ligneDeux[1] == "x" and ligneDeux[2] == "x" and ligneDeux[3] == "x":
@@ -97,7 +132,6 @@ def winner():
         gagnant = 2
     elif compteTour == 9:
         gagnant = 0
-    print(diagoUn)
 
 def coupJoueur():
     global ligneDeux
@@ -214,14 +248,26 @@ def coupJoueur():
                     ligneTrois[3] ="o"
             else:
                 print("erreur")
-    print(diagoUn)
             
+explication = 0
 def StarterGame():
+    global explication
+    if explication == 0:
+        print("yo sale dino, je t'explique les règle ^^, :")
+        print("le morpion, le joueur 1 c'est la croix, joueur 2 le rond, celui qui arrive a alligner dans le cube de 3 sur 3, 3 X ou 3 O a gagner")
+        print("voila bon bonne chance !")
+        explication = 1
     global Jun
     global Jdeux
     global gagnant
     global compteTour
     global encore
+    global u
+    global aa
+    global bbb
+    global cccc
+    gagnant = 10
+    print(u);print(aa);print(bbb);print(cccc)
     while not gagnant in [0,1,2]:
         if not gagnant in [0,1,2]:
             Jun = Jdeux + 1
@@ -229,40 +275,22 @@ def StarterGame():
             compteTour = compteTour + 1
             print(u);print(aa);print(bbb);print(cccc)
             winner()
-            print(compteTour)
-            print(gagnant)
         if not gagnant in [0,1,2]:   
             Jdeux = Jun + 1
             coupJoueur()
             compteTour = compteTour + 1
             print(u);print(aa);print(bbb);print(cccc)
             winner()
-            print(compteTour)
-            print(gagnant)
     if gagnant == 0:
-        print("matche nul, vous êtes nul !")
+        print("matche nul, vous êtes nul !")     
+        Restart()
     elif gagnant == 1:
         print("joueur 1 (ps celui qui a les x ) est gagnant, ps le joueur 2 tes nul")
+        Restart()
     elif gagnant == 2:
         print("le joueur 2 (ps celui qui a les o ) est gagnant, ps le joueur 1 tes nul")
-    # print("yo bande de débile tu veux retenter ?")
-    # encore = input("-1 = retenter || -2 = j'abandone car jsui nul")
-    # while 1:
-    #     if not encore in [1,2]:
-    #         print("te fous pas dma geu ptit batard mes 1 ou 2 et pas : ",encore)
-    #         print("yo bande de débile tu veux retenter ?")
-    #         encore = input("-1 = retenter || -2 = j'abandone car jsui nul")
-    #     elif encore in [1,2]:
-    #         if encore == 1:
-    #             print("oki Dinosaure ON RESTARTTTTTTTRE")
-    #             Restart()
-    #             StarterGame()
-    #         elif encore == 2:
-    #             print("NNNNNNNNNNNNNNOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOBBBBBBBBBBBBBB")
-    #             return
-
-
-
+        Restart()
+        
             
 StarterGame()
 
