@@ -1,6 +1,8 @@
 #importe input qui prend les entrés des joueur
-
 #deffinir la fonction StartGame
+import pygame
+pygame.init()
+from pygame.locals import *
 #initialisation d'un tableau dans un tableau de 3 colone et 3 ligne (BaseMorpion = ([0,1,2],[0,1,2],[0,1,2]))
 coordonne = ['',"A","B","C"]
 ligneUn =["1","","",""]
@@ -250,7 +252,7 @@ def coupJoueur():
                 print("erreur")
             
 explication = 0
-def StarterGame():
+def StarterGame():    
     global explication
     if explication == 0:
         print("yo sale dino, je t'explique les règle ^^, :")
