@@ -3,7 +3,7 @@
 # import pygame
 # pygame.init()
 # from pygame.locals import *
-# fenetre = pygame.display.set_mode((1000, 1000))
+# fenetre = pygame.display.set_mode((300, 300))
 # pygame.display.set_caption("Morpion")
 
 # interface = True
@@ -17,8 +17,8 @@
 # pygame.quit()
 
 coordonne = ['',"A","B","C"]
-ligneUn =["1","","",""]
-ligneDeux =["2","","",""]
+ligneUn =["1","","","x"]
+ligneDeux =["2","","x",""]
 ligneTrois =["3","","",""]
 compteTour = 0
 encore = 0
@@ -31,13 +31,10 @@ diagoDeux = [colonneUn[2],colonneDeux[1],colonneTrois[0]]
 
 Jun = 0
 Jdeux = 0
-gagnant = 10
+gagnant = 3
 
 Tableau = [coordonne,ligneUn,ligneDeux,ligneTrois]
-u = Tableau[0]
-aa = Tableau[1]
-bbb = Tableau[2]
-cccc = Tableau[3]
+
 
 def Restart():
     global ligneDeux
@@ -53,10 +50,7 @@ def Restart():
     global Jdeux
     global compteTour
     global encore
-    global u
-    global aa
-    global bbb
-    global cccc
+    global Tableau
     print("yo bande de débile tu veux retenter ?")
     encore = input("-1 = retenter || -2 = j'abandone car jsui nul: ")
     if not encore in ['1','2']:
@@ -81,13 +75,9 @@ def Restart():
 
             Jun = 0
             Jdeux = 0
-            gagnant = 10
+            gagnant = 3
 
             Tableau = [coordonne,ligneUn,ligneDeux,ligneTrois]
-            u = Tableau[0]
-            aa = Tableau[1]
-            bbb = Tableau[2]
-            cccc = Tableau[3]
 
             StarterGame()
 
@@ -262,7 +252,80 @@ def coupJoueur():
                     ligneTrois[3] ="o"
             else:
                 print("erreur")
-            
+
+# def Bot():
+#     global ligneDeux
+#     global ligneUn
+#     global ligneTrois
+#     global colonneDeux
+#     global colonneUn
+#     global colonneTrois
+#     global diagoDeux
+#     global diagoUn
+#     global gagnant
+#     global Tableau
+#     Bcoordonne = ['',"A","B","C"]
+#     BligneUn =["1",0,0,0]
+#     BligneDeux =["2",0,0,0]
+#     BligneTrois =["3",0,0,0]
+#     if ligneUn[1] == 'x':
+#         BligneUn[1] = 4
+#         BligneUn[2] = BligneUn[2] + 1
+#         BligneDeux[1] = BligneDeux[1] + 1
+#         BligneDeux[2] = BligneDeux[2] + 1
+#     if ligneUn[2] == 'x':
+#         BligneUn[2] = 4
+#         BligneUn[1] = BligneUn[1] + 1
+#         BligneUn[3] = BligneUn[3] + 1
+#         BligneDeux[1] = BligneDeux[1] + 1
+#         BligneDeux[2] = BligneDeux[2] + 1
+#         BligneDeux[3] = BligneDeux[3] + 1
+#     if ligneUn[3] == 'x':
+#         BligneUn[3] = 4
+#         BligneUn[2] = BligneUn[2] + 1
+#         BligneDeux[3] = BligneDeux[3] + 1
+#         BligneDeux[2] = BligneDeux[2] + 1
+#     if ligneDeux[1] == 'x':
+#         BligneDeux[1] = 4
+#         BligneUn[1] = BligneUn[1] + 1
+#         BligneUn[2] = BligneUn[2] + 1
+#         BligneDeux[2] = BligneDeux[2] + 1
+#         BligneTrois[1] = BligneTrois[1] + 1
+#         BligneTrois[2] = BligneTrois[2] + 1
+#     if ligneDeux[2] == 'x':
+#         BligneDeux[2] == 4
+#         BligneUn[1] = BligneUn[1] + 1
+#         BligneUn[2] = BligneUn[2] + 1
+#         BligneUn[3] = BligneUn[3] + 1
+#         BligneDeux[3] = BligneDeux[3] + 1
+#         BligneDeux[1] = BligneDeux[1] + 1
+#         BligneTrois[1] = BligneTrois[1] + 1
+#         BligneTrois[2] = BligneTrois[2] + 1
+#         BligneTrois[3] = BligneTrois[3] + 1
+#     if ligneDeux[3] == 'x':
+#         BligneDeux[3] = 4
+#         BligneUn[3] = BligneUn[3] + 1
+#         BligneUn[2] = BligneUn[2] + 1
+#         BligneTrois[2] = BligneTrois[2] + 1
+#         BligneTrois[3] = BligneTrois[3] + 1
+#     if ligneTrois[1] == 'x':
+#         BligneTrois[1] = 4
+#         BligneDeux[1] = BligneDeux[1] + 1
+#         BligneDeux[2] = BligneDeux[2] + 1
+#         BligneTrois[2] = BligneTrois[2] + 1
+#     if ligneTrois[2] == 'x':
+#         BligneTrois[1] = BligneTrois[1] + 1 
+#         BligneTrois[3] = BligneTrois[3] + 1
+#         BligneDeux[1] = BligneDeux[1] + 1
+#         BligneDeux[2] = BligneDeux[2] + 1
+#         BligneDeux[3] = BligneDeux[3] + 1
+#     if ligneTrois[3] == 'x':
+#         BligneTrois[3] = 4
+#         BligneDeux[2] = BligneDeux[2] + 1
+#         BligneDeux[3] = BligneDeux[3] + 1
+#         BligneTrois[2] = BligneTrois[2] + 1
+#     print(Bcoordonne);print(BligneUn);print(BligneDeux);print(BligneTrois)
+
 explication = 0
 def StarterGame():    
     global explication
@@ -276,35 +339,66 @@ def StarterGame():
     global gagnant
     global compteTour
     global encore
-    global u
-    global aa
-    global bbb
-    global cccc
-    gagnant = 10
-    print(u);print(aa);print(bbb);print(cccc)
-    while not gagnant in [0,1,2]:
-        if not gagnant in [0,1,2]:
-            Jun = Jdeux + 1
-            coupJoueur()
-            compteTour = compteTour + 1
-            print(u);print(aa);print(bbb);print(cccc)
-            winner()
-        if not gagnant in [0,1,2]:   
-            Jdeux = Jun + 1
-            coupJoueur()
-            compteTour = compteTour + 1
-            print(u);print(aa);print(bbb);print(cccc)
-            winner()
-    if gagnant == 0:
-        print("matche nul, vous êtes nul !")     
-        Restart()
-    elif gagnant == 1:
-        print("joueur 1 (ps celui qui a les x ) est gagnant, ps le joueur 2 tes nul")
-        Restart()
-    elif gagnant == 2:
-        print("le joueur 2 (ps celui qui a les o ) est gagnant, ps le joueur 1 tes nul")
-        Restart()
-        
-            
-StarterGame()
+    global Tableau
+    gagnant = 3
+    print("me revoila tu veux te taper contre qui ? le bot ou un pote ?")
+    print("réponse possible : ")
+    print("-bot");print("-pote")
+    demande = "Restart"
+    demande = input("votre choix: ")
+    if not demande in["bot","pote"]:
+        print("tu me mes roublise, stp mes une valeur possible pas :",demande)
+        StarterGame()
+    if demande in ["bot","pote"]:
+        if demande == "pote":
+            print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
+            while not gagnant in [0,1,2]:
+                if not gagnant in [0,1,2]:
+                    Jun = Jdeux + 1
+                    coupJoueur()
+                    compteTour = compteTour + 1
+                    print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
+                    winner()
+                if not gagnant in [0,1,2]:   
+                    Jdeux = Jun + 1
+                    coupJoueur()
+                    compteTour = compteTour + 1
+                    print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
+                    winner()
+            if gagnant == 0:
+                print("matche nul, vous êtes nul !")     
+                Restart()
+            elif gagnant == 1:
+                print("joueur 1 (ps celui qui a les x ) est gagnant, ps le joueur 2 tes nul")
+                Restart()
+            elif gagnant == 2:
+                print("le joueur 2 (ps celui qui a les o ) est gagnant, ps le joueur 1 tes nul")
+                Restart()
+        if demande == "bot":
+            print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
+            while not gagnant in [0,1,2]:
+                if not gagnant in [0,1,2]:
+                    Jun = Jdeux + 1
+                    coupJoueur()
+                    compteTour = compteTour + 1
+                    print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
+                    winner()
+                if not gagnant in [0,1,2]:   
+                    Jdeux = Jun + 1
+                    Bot()
+                    compteTour = compteTour + 1
+                    print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
+                    winner()
+            if gagnant == 0:
+                print("matche nul, vous êtes nul !")     
+                Restart()
+            elif gagnant == 1:
+                print("joueur 1 (ps celui qui a les x ) est gagnant, ps je vais foutre mon bot a la casse")
+                Restart()
+            elif gagnant == 2:
+                print("le bot (ps celui qui a les o ) est gagnant, ps le joueur 1 tes nul")
+                Restart()
 
+
+# Bot()            
+StarterGame()
