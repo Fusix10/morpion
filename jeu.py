@@ -1,16 +1,20 @@
 #importe input qui prend les entrés des joueur
 #deffinir la fonction StartGame
-import pygame
-pygame.init()
-from pygame.locals import *
-fenetre = pygame.display.set_mode((1200, 1200))
-interface = True
-while interface:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            interface = False
+# import pygame
+# pygame.init()
+# from pygame.locals import *
+# fenetre = pygame.display.set_mode((1000, 1000))
+# pygame.display.set_caption("Morpion")
 
-pygame.quit()
+# interface = True
+# while interface:
+#     pygame.rect(255.255)
+#     for event in pygame.event.get():
+#         if event.type == pygame.QUIT:
+#             interface = False
+    
+
+# pygame.quit()
 
 coordonne = ['',"A","B","C"]
 ligneUn =["1","","",""]
