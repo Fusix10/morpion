@@ -17,8 +17,8 @@
 # pygame.quit()
 
 coordonne = ['',"A","B","C"]
-ligneUn =["1","","","x"]
-ligneDeux =["2","","x",""]
+ligneUn =["1","","",""]
+ligneDeux =["2","","",""]
 ligneTrois =["3","","",""]
 compteTour = 0
 encore = 0
@@ -26,14 +26,15 @@ encore = 0
 colonneUn = [ligneUn[1],ligneDeux[1],ligneTrois[1]]
 colonneDeux = [ligneUn[2],ligneDeux[2],ligneTrois[2]]
 colonneTrois = [ligneUn[3],ligneDeux[3],ligneTrois[3]]
-diagoUn = [colonneUn[0],colonneDeux[1],colonneTrois[2]]
+diagoUn = [colonneDeux[1],colonneTrois[2]]
 diagoDeux = [colonneUn[2],colonneDeux[1],colonneTrois[0]]
 
 Jun = 0
 Jdeux = 0
 gagnant = 3
 
-Tableau = [coordonne,ligneUn,ligneDeux,ligneTrois]
+Tableau = [ligneUn,ligneDeux,ligneTrois]
+tableauRobot= [ligneUn[1],ligneUn[2],ligneUn[3],ligneDeux[1],ligneDeux[2],ligneDeux[3],ligneTrois[1],ligneTrois[2],ligneTrois[3]]
 
 
 def Restart():
@@ -77,7 +78,8 @@ def Restart():
             Jdeux = 0
             gagnant = 3
 
-            Tableau = [coordonne,ligneUn,ligneDeux,ligneTrois]
+            Tableau = [ligneUn,ligneDeux,ligneTrois]
+            tableauRobot= [ligneUn[1],ligneUn[2],ligneUn[3],ligneDeux[1],ligneDeux[2],ligneDeux[3],ligneTrois[1],ligneTrois[2],ligneTrois[3]]
 
             StarterGame()
 
@@ -253,78 +255,25 @@ def coupJoueur():
             else:
                 print("erreur")
 
-# def Bot():
-#     global ligneDeux
-#     global ligneUn
-#     global ligneTrois
-#     global colonneDeux
-#     global colonneUn
-#     global colonneTrois
-#     global diagoDeux
-#     global diagoUn
-#     global gagnant
-#     global Tableau
-#     Bcoordonne = ['',"A","B","C"]
-#     BligneUn =["1",0,0,0]
-#     BligneDeux =["2",0,0,0]
-#     BligneTrois =["3",0,0,0]
-#     if ligneUn[1] == 'x':
-#         BligneUn[1] = 4
-#         BligneUn[2] = BligneUn[2] + 1
-#         BligneDeux[1] = BligneDeux[1] + 1
-#         BligneDeux[2] = BligneDeux[2] + 1
-#     if ligneUn[2] == 'x':
-#         BligneUn[2] = 4
-#         BligneUn[1] = BligneUn[1] + 1
-#         BligneUn[3] = BligneUn[3] + 1
-#         BligneDeux[1] = BligneDeux[1] + 1
-#         BligneDeux[2] = BligneDeux[2] + 1
-#         BligneDeux[3] = BligneDeux[3] + 1
-#     if ligneUn[3] == 'x':
-#         BligneUn[3] = 4
-#         BligneUn[2] = BligneUn[2] + 1
-#         BligneDeux[3] = BligneDeux[3] + 1
-#         BligneDeux[2] = BligneDeux[2] + 1
-#     if ligneDeux[1] == 'x':
-#         BligneDeux[1] = 4
-#         BligneUn[1] = BligneUn[1] + 1
-#         BligneUn[2] = BligneUn[2] + 1
-#         BligneDeux[2] = BligneDeux[2] + 1
-#         BligneTrois[1] = BligneTrois[1] + 1
-#         BligneTrois[2] = BligneTrois[2] + 1
-#     if ligneDeux[2] == 'x':
-#         BligneDeux[2] == 4
-#         BligneUn[1] = BligneUn[1] + 1
-#         BligneUn[2] = BligneUn[2] + 1
-#         BligneUn[3] = BligneUn[3] + 1
-#         BligneDeux[3] = BligneDeux[3] + 1
-#         BligneDeux[1] = BligneDeux[1] + 1
-#         BligneTrois[1] = BligneTrois[1] + 1
-#         BligneTrois[2] = BligneTrois[2] + 1
-#         BligneTrois[3] = BligneTrois[3] + 1
-#     if ligneDeux[3] == 'x':
-#         BligneDeux[3] = 4
-#         BligneUn[3] = BligneUn[3] + 1
-#         BligneUn[2] = BligneUn[2] + 1
-#         BligneTrois[2] = BligneTrois[2] + 1
-#         BligneTrois[3] = BligneTrois[3] + 1
-#     if ligneTrois[1] == 'x':
-#         BligneTrois[1] = 4
-#         BligneDeux[1] = BligneDeux[1] + 1
-#         BligneDeux[2] = BligneDeux[2] + 1
-#         BligneTrois[2] = BligneTrois[2] + 1
-#     if ligneTrois[2] == 'x':
-#         BligneTrois[1] = BligneTrois[1] + 1 
-#         BligneTrois[3] = BligneTrois[3] + 1
-#         BligneDeux[1] = BligneDeux[1] + 1
-#         BligneDeux[2] = BligneDeux[2] + 1
-#         BligneDeux[3] = BligneDeux[3] + 1
-#     if ligneTrois[3] == 'x':
-#         BligneTrois[3] = 4
-#         BligneDeux[2] = BligneDeux[2] + 1
-#         BligneDeux[3] = BligneDeux[3] + 1
-#         BligneTrois[2] = BligneTrois[2] + 1
-#     print(Bcoordonne);print(BligneUn);print(BligneDeux);print(BligneTrois)
+def Bot():
+    global ligneDeux
+    global ligneUn
+    global ligneTrois
+    global colonneDeux
+    global colonneUn
+    global colonneTrois
+    global diagoDeux
+    global diagoUn
+    global gagnant
+    global Tableau
+    global tableauRobot
+    for i in tableauRobot :
+        if i == '':
+            if i == 'x':
+                print(coordonne);print(Tableau[0]);print(Tableau[1]);print(Tableau[2])
+                
+
+
 
 explication = 0
 def StarterGame():    
@@ -351,19 +300,19 @@ def StarterGame():
         StarterGame()
     if demande in ["bot","pote"]:
         if demande == "pote":
-            print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
+            print(coordonne);print(Tableau[0]);print(Tableau[1]);print(Tableau[2])
             while not gagnant in [0,1,2]:
                 if not gagnant in [0,1,2]:
                     Jun = Jdeux + 1
                     coupJoueur()
                     compteTour = compteTour + 1
-                    print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
+                    print(coordonne);print(Tableau[0]);print(Tableau[1]);print(Tableau[2])
                     winner()
                 if not gagnant in [0,1,2]:   
                     Jdeux = Jun + 1
                     coupJoueur()
                     compteTour = compteTour + 1
-                    print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
+                    print(coordonne);print(Tableau[0]);print(Tableau[1]);print(Tableau[2])
                     winner()
             if gagnant == 0:
                 print("matche nul, vous êtes nul !")     
@@ -375,19 +324,19 @@ def StarterGame():
                 print("le joueur 2 (ps celui qui a les o ) est gagnant, ps le joueur 1 tes nul")
                 Restart()
         if demande == "bot":
-            print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
+            print(coordonne);print(Tableau[0]);print(Tableau[1]);print(Tableau[2])
             while not gagnant in [0,1,2]:
                 if not gagnant in [0,1,2]:
                     Jun = Jdeux + 1
                     coupJoueur()
                     compteTour = compteTour + 1
-                    print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
+                    print(coordonne);print(Tableau[0]);print(Tableau[1]);print(Tableau[2])
                     winner()
                 if not gagnant in [0,1,2]:   
                     Jdeux = Jun + 1
                     Bot()
                     compteTour = compteTour + 1
-                    print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
+                    print(coordonne);print(Tableau[0]);print(Tableau[1]);print(Tableau[2])
                     winner()
             if gagnant == 0:
                 print("matche nul, vous êtes nul !")     
