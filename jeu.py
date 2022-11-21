@@ -15,7 +15,6 @@
     
 
 # pygame.quit()
-
 coordonne = ['',"A","B","C"]
 ligneUn =["1","","",""]
 ligneDeux =["2","","",""]
@@ -267,10 +266,11 @@ def Bot():
     global gagnant
     global Tableau
     global tableauRobot
+    tableauRobot= [ligneUn[1],ligneUn[2],ligneUn[3],ligneDeux[1],ligneDeux[2],ligneDeux[3],ligneTrois[1],ligneTrois[2],ligneTrois[3]]
     for i in tableauRobot :
         if i == '':
-            if i == 'x':
-                print(coordonne);print(Tableau[0]);print(Tableau[1]);print(Tableau[2])
+            
+                
                 
 
 
