@@ -15,6 +15,7 @@
     
 
 # pygame.quit()
+
 coordonne = ['',"A","B","C"]
 ligneUn =["1","","",""]
 ligneDeux =["2","","",""]
@@ -25,15 +26,14 @@ encore = 0
 colonneUn = [ligneUn[1],ligneDeux[1],ligneTrois[1]]
 colonneDeux = [ligneUn[2],ligneDeux[2],ligneTrois[2]]
 colonneTrois = [ligneUn[3],ligneDeux[3],ligneTrois[3]]
-diagoUn = [colonneDeux[1],colonneTrois[2]]
+diagoUn = [colonneUn[0],colonneDeux[1],colonneTrois[2]]
 diagoDeux = [colonneUn[2],colonneDeux[1],colonneTrois[0]]
 
 Jun = 0
 Jdeux = 0
 gagnant = 3
 
-Tableau = [ligneUn,ligneDeux,ligneTrois]
-tableauRobot= [ligneUn[1],ligneUn[2],ligneUn[3],ligneDeux[1],ligneDeux[2],ligneDeux[3],ligneTrois[1],ligneTrois[2],ligneTrois[3]]
+Tableau = [coordonne,ligneUn,ligneDeux,ligneTrois]
 
 
 def Restart():
@@ -77,8 +77,7 @@ def Restart():
             Jdeux = 0
             gagnant = 3
 
-            Tableau = [ligneUn,ligneDeux,ligneTrois]
-            tableauRobot= [ligneUn[1],ligneUn[2],ligneUn[3],ligneDeux[1],ligneDeux[2],ligneDeux[3],ligneTrois[1],ligneTrois[2],ligneTrois[3]]
+            Tableau = [coordonne,ligneUn,ligneDeux,ligneTrois]
 
             StarterGame()
 
@@ -253,7 +252,7 @@ def coupJoueur():
                     ligneTrois[3] ="o"
             else:
                 print("erreur")
-
+fm=0
 def Bot():
     global ligneDeux
     global ligneUn
@@ -265,16 +264,121 @@ def Bot():
     global diagoUn
     global gagnant
     global Tableau
-    global tableauRobot
-    tableauRobot= [ligneUn[1],ligneUn[2],ligneUn[3],ligneDeux[1],ligneDeux[2],ligneDeux[3],ligneTrois[1],ligneTrois[2],ligneTrois[3]]
-    for i in tableauRobot :
-        if i == '':
-            
-                
-                
-
-
-
+    global fm
+    TableauRobot = [ligneUn[1],ligneUn[2],ligneUn[3],ligneDeux[1],ligneDeux[2],ligneDeux[3],ligneTrois[1],ligneTrois[2],ligneTrois[3]]
+    colonneUn = [ligneUn[1],ligneDeux[1],ligneTrois[1]]
+    colonneDeux = [ligneUn[2],ligneDeux[2],ligneTrois[2]]
+    colonneTrois = [ligneUn[3],ligneDeux[3],ligneTrois[3]]
+    diagoUn = [colonneUn[0],colonneDeux[1],colonneTrois[2]]
+    diagoDeux = [colonneUn[2],colonneDeux[1],colonneTrois[0]]
+    if fm == 0:
+        if ligneUn[1] == 'x' or ligneUn[3] == 'x' or ligneTrois[1] == 'x' or ligneTrois[3] == 'x':
+            ligneDeux[2] = 'o'
+            fm = 1
+            return
+        elif ligneDeux[2] == 'x':
+            ligneUn[1] = 'o'
+            fm=1
+            return
+        elif ligneUn[2] == 'x':
+            ligneTrois = 'o'
+            fm=1
+            return
+        elif ligneDeux[1] == 'x':
+            ligneUn[3]
+            fm=1
+            return
+        elif ligneTrois[2] == 'x':
+            ligneUn[1] = 'x'
+            fm=1
+            return
+        elif ligneDeux[3] == 'x':
+            ligneTrois[1] = 'o'
+            fm=1
+            return
+    if fm == 1:
+        for i in TableauRobot:
+            if i == "":
+                if ligneUn.count('o') == 2:
+                    for i in range(1, len(ligneUn)):
+                        if ligneUn[i] == '':
+                            ligneUn[i] = 'o'
+                            return
+                elif ligneDeux.count('o') == 2:
+                    for i in range(1, len(ligneDeux)):
+                        if ligneDeux[i] == '':
+                            ligneDeux[i] = 'o'
+                            return
+                elif ligneTrois.count('o') == 2:
+                    for i in range(1, len(ligneTrois)):
+                        if ligneTrois[i] == '':
+                            ligneTrois[i] = 'o'
+                            return
+                elif colonneUn.count('o') == 2:
+                    for i in range(len(colonneUn)):
+                        if colonneUn[i] == '':
+                            colonneUn[i] = 'o'
+                            return
+                elif colonneDeux.count('o') == 2:
+                    for i in range(len(colonneDeux)):
+                        if colonneDeux[i] == '':
+                            colonneDeux[i] = 'o'
+                            return
+                elif colonneTrois.count('o') == 2:
+                    for i in range(len(colonneTrois)):
+                        if colonneTrois[i] == '':
+                            colonneTrois[i] = 'o'
+                            return
+                elif diagoUn.count('o') == 2:
+                    for i in range(len(diagoUn)):
+                        if diagoUn[i] == '':
+                            diagoUn[i] = 'o'
+                            return
+                elif diagoDeux.count('o') == 2:
+                    for i in range(len(diagoDeux)):
+                        if diagoDeux[i] == '':
+                            diagoDeux[i] = 'o'
+                            return            
+                elif ligneUn.count('x') == 2:
+                    for i in range(1, len(ligneUn)):
+                        if ligneUn[i] == '':
+                            ligneUn[i] = 'o'
+                            return
+                elif ligneDeux.count('x') == 2:
+                    for i in range(1, len(ligneDeux)):
+                        if ligneDeux[i] == '':
+                            ligneDeux[i] = 'o'
+                            return
+                elif ligneTrois.count('x') == 2:
+                    for i in range(1, len(ligneTrois)):
+                        if ligneTrois[i] == '':
+                            ligneTrois[i] = 'o'
+                            return
+                elif colonneUn.count('x') == 2:
+                    for i in range(len(colonneUn)):
+                        if colonneUn[i] == '':
+                            colonneUn[i] = 'o'
+                            return
+                elif colonneDeux.count('x') == 2:
+                    for i in range(len(colonneDeux)):
+                        if colonneDeux[i] == '':
+                            colonneDeux[i] = 'o'
+                            return
+                elif colonneTrois.count('x') == 2:
+                    for i in range(len(colonneTrois)):
+                        if colonneTrois[i] == '':
+                            colonneTrois[i] = 'o'
+                            return
+                elif diagoUn.count('x') == 2:
+                    for i in range(len(diagoUn)):
+                        if diagoUn[i] == '':
+                            diagoUn[i] = 'o'
+                            return
+                elif diagoDeux.count('x') == 2:
+                    for i in range(len(diagoDeux)):
+                        if diagoDeux[i] == '':
+                            diagoDeux[i] = 'o'
+                            return
 explication = 0
 def StarterGame():    
     global explication
@@ -300,19 +404,19 @@ def StarterGame():
         StarterGame()
     if demande in ["bot","pote"]:
         if demande == "pote":
-            print(coordonne);print(Tableau[0]);print(Tableau[1]);print(Tableau[2])
+            print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
             while not gagnant in [0,1,2]:
                 if not gagnant in [0,1,2]:
                     Jun = Jdeux + 1
                     coupJoueur()
                     compteTour = compteTour + 1
-                    print(coordonne);print(Tableau[0]);print(Tableau[1]);print(Tableau[2])
+                    print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
                     winner()
                 if not gagnant in [0,1,2]:   
                     Jdeux = Jun + 1
                     coupJoueur()
                     compteTour = compteTour + 1
-                    print(coordonne);print(Tableau[0]);print(Tableau[1]);print(Tableau[2])
+                    print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
                     winner()
             if gagnant == 0:
                 print("matche nul, vous êtes nul !")     
@@ -324,19 +428,19 @@ def StarterGame():
                 print("le joueur 2 (ps celui qui a les o ) est gagnant, ps le joueur 1 tes nul")
                 Restart()
         if demande == "bot":
-            print(coordonne);print(Tableau[0]);print(Tableau[1]);print(Tableau[2])
+            print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
             while not gagnant in [0,1,2]:
                 if not gagnant in [0,1,2]:
                     Jun = Jdeux + 1
                     coupJoueur()
                     compteTour = compteTour + 1
-                    print(coordonne);print(Tableau[0]);print(Tableau[1]);print(Tableau[2])
+                    print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
                     winner()
                 if not gagnant in [0,1,2]:   
                     Jdeux = Jun + 1
                     Bot()
                     compteTour = compteTour + 1
-                    print(coordonne);print(Tableau[0]);print(Tableau[1]);print(Tableau[2])
+                    print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
                     winner()
             if gagnant == 0:
                 print("matche nul, vous êtes nul !")     
