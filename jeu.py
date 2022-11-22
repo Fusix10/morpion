@@ -1,24 +1,30 @@
-
+#j'initialise tout mes fonctions pour préparer le jeux, le tableau et tout c'est composant, des variable pour savoir qui gagne le comptetour ect...
+#construction du tableau
 coordonne = ['',"A","B","C"]
 ligneUn =["1","","",""]
 ligneDeux =["2","","",""]
 ligneTrois =["3","","",""]
+#pouvoir compté les tour et arrête le jeux aux bout de 9 tour 
 compteTour = 0
+#si il veux encore jouer ?
 encore = 0
-
+#permet de définir des colones et des diagonal a partire des ligne
 colonneUn = [ligneUn[1],ligneDeux[1],ligneTrois[1]]
 colonneDeux = [ligneUn[2],ligneDeux[2],ligneTrois[2]]
 colonneTrois = [ligneUn[3],ligneDeux[3],ligneTrois[3]]
 diagoUn = [colonneUn[0],colonneDeux[1],colonneTrois[2]]
 diagoDeux = [colonneUn[2],colonneDeux[1],colonneTrois[0]]
 
+#se qui permet de vérifier si il y a un gagnat entre le Jun et le Jdeux ou entre le Jun et le bot (la variable Jdeux est pour le bot et le Jdeux)
 Jun = 0
 Jdeux = 0
+#3 est la valeur de base qui permet de faire fonctionner le code en attendant 1 gagnat
 gagnant = 3
 
+#je regroupe tout dans un tableau permet principalement de débuger
 Tableau = [coordonne,ligneUn,ligneDeux,ligneTrois]
 
-
+#la fonction qui permet de relançais le jeux autant de fois que je veux, elle vas donc tout ré-initialisé a "0" pour revenir aux point de départ
 def Restart():
     global ligneDeux
     global ligneUn
@@ -34,7 +40,8 @@ def Restart():
     global compteTour
     global encore
     global Tableau
-    global fm
+    global afm
+    #la partie pour demander si il veux retenter ou non le jeux avec en + un repére d'erreur si il mes des valeur incorrecte
     print("yo bande de débile tu veux retenter ?")
     encore = input("-1 = retenter || -2 = j'abandone car jsui nul: ")
     if not encore in ['1','2']:
@@ -44,13 +51,14 @@ def Restart():
     elif encore in ['1','2']:
         if encore == '1':
             print("oki Dinosaure ON RESTARTTTTTTTRE")
+            #ré-initialisé a "0" de tout variable
             coordonne = ['',"A","B","C"]
             ligneUn =["1","","",""]
             ligneDeux =["2","","",""]
             ligneTrois =["3","","",""]
             compteTour = 0
             encore = 0
-            fm = 0
+            afm = 0
 
             colonneUn = [ligneUn[1],ligneDeux[1],ligneTrois[1]]
             colonneDeux = [ligneUn[2],ligneDeux[2],ligneTrois[2]]
@@ -65,11 +73,11 @@ def Restart():
             Tableau = [coordonne,ligneUn,ligneDeux,ligneTrois]
 
             StarterGame()
-
+        #si il veux pas rejouer
         elif encore == '2':
             print("NNNNNNNNNNNNNNOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOBBBBBBBBBBBBBB")
             return
-
+#la fonction qui permet de déterminer qui gagne
 def winner():
     global ligneDeux
     global ligneUn
@@ -86,7 +94,7 @@ def winner():
     colonneTrois = [ligneUn[3],ligneDeux[3],ligneTrois[3]]
     diagoUn = [colonneUn[0],colonneDeux[1],colonneTrois[2]]
     diagoDeux = [colonneUn[2],colonneDeux[1],colonneTrois[0]]
-
+    #vérrification de chaque cas possible de victoire a chaque tour 
     if ligneUn[1] == "x" and ligneUn[2] == "x" and ligneUn[3] == "x":
         gagnant = 1
     elif ligneDeux[1] == "x" and ligneDeux[2] == "x" and ligneDeux[3] == "x":
@@ -121,7 +129,7 @@ def winner():
         gagnant = 2
     elif compteTour == 9:
         gagnant = 0
-
+#fonction permettant aux joueur de jouer °_°'
 def coupJoueur():
     global ligneDeux
     global ligneUn
@@ -132,11 +140,14 @@ def coupJoueur():
     global diagoDeux
     global diagoUn
     global gagnant
+    #demander ou esqu'il veux jouer
     Reponse = input("mettre les coordonné : ")
+    #vérifie la réponse si elle est bonne dans les possibilité ci dessous sinon on lui redemande
     if not Reponse in ["a1","a2","a3","A1","A2","A3","b1","b2","b3","B1","B2","B3","c1","c2","c3","C1","C2","C3"]:
         print("réponse inconrectte")
         coupJoueur()
     else:
+        #si c'est une bonne réponse on vérifi, daport ou esqu'il veux le plaçé, puis si la case qu'il sélection est bien vide 
         print("bonne réponse")
         if Reponse == "a1" or Reponse == "A1":
             if ligneUn[1] != "":
@@ -237,7 +248,8 @@ def coupJoueur():
                     ligneTrois[3] ="o"
             else:
                 print("erreur")
-fm = 0
+#l'un des variable la plus important after first move donc se qu'il lui permet de séparé sont premier des coups des autres coups
+afm = 0
 def Bot():
     global ligneDeux
     global ligneUn
@@ -250,39 +262,42 @@ def Bot():
     global gagnant
     global Tableau
     global compteTour
-    global fm
+    global afm
     TableauRobot = [ligneUn[1],ligneUn[2],ligneUn[3],ligneDeux[1],ligneDeux[2],ligneDeux[3],ligneTrois[1],ligneTrois[2],ligneTrois[3]]
     colonneUn = [ligneUn[1],ligneDeux[1],ligneTrois[1]]
     colonneDeux = [ligneUn[2],ligneDeux[2],ligneTrois[2]]
     colonneTrois = [ligneUn[3],ligneDeux[3],ligneTrois[3]]
     diagoUn = [colonneUn[0],colonneDeux[1],colonneTrois[2]]
     diagoDeux = [colonneUn[2],colonneDeux[1],colonneTrois[0]]
+    #il vas analyse le premier coup du joueur pour savoir qu'elle est le meuilleurs coup possible
     if compteTour == 1:
         if ligneUn[1] == 'x' or ligneUn[3] == 'x' or ligneTrois[1] == 'x' or ligneTrois[3] == 'x':
             ligneDeux[2] = 'o'
-            fm = 1
+            afm = 1
             return
         if ligneDeux[2] == 'x':
             ligneUn[1] = 'o'
-            fm = 1
+            afm = 1
             return
         if ligneUn[2] == 'x':
             ligneTrois = 'o'
-            fm = 1
+            afm = 1
             return
         if ligneDeux[1] == 'x':
             ligneUn[3] = 'o'
-            fm = 1
+            afm = 1
             return
         if ligneTrois[2] == 'x':
             ligneUn[1] = 'o'
-            fm = 1
+            afm = 1
             return
         if ligneDeux[3] == 'x':
             ligneTrois[1] = 'o'
-            fm = 1
+            afm = 1
             return
-    if fm == 1:
+    #une fois cella fait, annalysé chaque coup du joueur et réagir ainsi, vérifie si il y la possibilité de gagner en 1 coup, sinon il regarde si il est en danger, 
+    #ensuit si il est pas en danger et qu'il na pas de possibilité de win en 1 coup alors il joue un coup qui pourrait le faire gagner par la suite
+    if afm == 1:
         for i in TableauRobot:
             if i == "":
                 if ligneUn.count('o') == 2:
@@ -428,8 +443,9 @@ def Bot():
                             diagoDeux[i] = 'o'
                             ligneUn[3] = diagoDeux[0];ligneDeux[2] = diagoDeux[1];ligneTrois[1] = diagoDeux[2]
                             return              
-
+#cette variable sert juste a activé les explication ou non
 explication = 0
+#la ou tout commence, c'est la ou on explique les règle et qu'il va choisir contre qui il joue
 def StarterGame():    
     global explication
     if explication == 0:
@@ -444,14 +460,17 @@ def StarterGame():
     global encore
     global Tableau
     gagnant = 3
+    #choix contre bot ou joueur
     print("me revoila tu veux te taper contre qui ? le bot ou un pote ?")
     print("réponse possible : ")
     print("-bot");print("-pote")
     demande = "Restart"
     demande = input("votre choix: ")
+    #vérifie qu'il a pas mis dla D
     if not demande in["bot","pote"]:
         print("tu me mes roublise, stp mes une valeur possible pas :",demande)
         StarterGame()
+    #sinon paraport a se qu'il a mis le jeux start
     if demande in ["bot","pote"]:
         if demande == "pote":
             print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
@@ -468,6 +487,7 @@ def StarterGame():
                     compteTour = compteTour + 1
                     print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
                     winner()
+            #check a gagne et restart le jeux
             if gagnant == 0:
                 print("matche nul, vous êtes nul !")     
                 Restart()
