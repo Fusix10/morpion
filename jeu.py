@@ -171,7 +171,7 @@ def coupJoueur():
                     ligneUn[2] ="o"
             else:
                 print("erreur")
-        elif Reponse == "c1" or Reponse == "C3" or Reponse =="1c" or Reponse == "1C":
+        elif Reponse == "c1" or Reponse == "C1" or Reponse =="1c" or Reponse == "1C":
             if ligneUn[3] != "":
                 print("yolo")
                 coupJoueur()
@@ -281,19 +281,19 @@ def Bot():
             afm = 1
             return
         if ligneUn[2] == 'x':
-            ligneTrois = 'o'
+            ligneDeux[2] = 'o'
             afm = 1
             return
         if ligneDeux[1] == 'x':
-            ligneUn[3] = 'o'
+            ligneDeux[2] = 'o'
             afm = 1
             return
         if ligneTrois[2] == 'x':
-            ligneUn[1] = 'o'
+            ligneDeux[2] = 'o'
             afm = 1
             return
         if ligneDeux[3] == 'x':
-            ligneTrois[1] = 'o'
+            ligneDeux[2] = 'o'
             afm = 1
             return
     #une fois cella fait, annalysé chaque coup du joueur et réagir ainsi, vérifie si il y la possibilité de gagner en 1 coup, sinon il regarde si il est en danger, 
@@ -399,6 +399,40 @@ def Bot():
                                 diagoDeux[i] = 'o'
                                 ligneUn[3] = diagoDeux[2];ligneDeux[2] = diagoDeux[1];ligneTrois[1] = diagoDeux[0]
                                 return
+                if ligneUn[1] == 'x' and ligneTrois[3] == 'x':
+                    if ligneUn[2] == '':
+                        ligneUn[2] = 'o'
+                        return
+                if ligneUn[3] == 'x' and ligneTrois[1] == 'x':
+                    if ligneUn[2] == '':
+                        ligneUn[2] = 'o'
+                        return
+                if ligneDeux[2] == 'x' and ligneTrois[3] == 'x':
+                    if ligneTrois[1] == '':
+                        ligneTrois[1] = 'o'
+                        return
+                if ligneDeux[2] == 'x' and ligneTrois[1] == 'x':
+                    if ligneUn[3] == '':
+                        ligneUn[3] = 'o'
+                        return
+                if ligneDeux[2] == 'x' and ligneUn[3] == 'x':
+                    if ligneTrois[1] == '':
+                        ligneTrois[1] = 'o'
+                        return
+                if ligneTrois[1] == 'x' and ligneDeux[2] == 'x':
+                    if ligneUn[3] == '':
+                        ligneDeux[3] = 'o'
+                        return
+                if ligneTrois[2] == 'x':
+                    if ligneUn[3] or ligneUn[1] == 'x':
+                        if ligneTrois[3] == '':
+                            ligneTrois[3] = 'o'
+                            return
+                if ligneUn[2] == 'x':
+                    if ligneUn[3] or ligneUn[1] == 'x':
+                        if ligneUn[3] == '':
+                            ligneDeux[3] = 'o'
+                            return         
                 if diagoUn.count('o') == 1:
                     for i in range(len(diagoUn)):
                         if diagoUn[i] == '':
