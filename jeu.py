@@ -143,13 +143,13 @@ def coupJoueur():
     #demander ou esqu'il veux jouer
     Reponse = input("mettre les coordonné : ")
     #vérifie la réponse si elle est bonne dans les possibilité ci dessous sinon on lui redemande
-    if not Reponse in ["a1","a2","a3","A1","A2","A3","b1","b2","b3","B1","B2","B3","c1","c2","c3","C1","C2","C3"]:
+    if not Reponse in ["a1","a2","a3","A1","A2","A3","b1","b2","b3","B1","B2","B3","c1","c2","c3","C1","C2","C3","1a","2a","3a","1b","2b","3b","1c","2c","3c","1A","2A","3A","1B","2B","3B","1C","2C","3C"]:
         print("réponse inconrectte")
         coupJoueur()
     else:
         #si c'est une bonne réponse on vérifi, daport ou esqu'il veux le plaçé, puis si la case qu'il sélection est bien vide 
         print("bonne réponse")
-        if Reponse == "a1" or Reponse == "A1":
+        if Reponse == "a1" or Reponse == "A1" or Reponse == "1a" or Reponse =="1A":
             if ligneUn[1] != "":
                 print("yolo")
                 coupJoueur()
@@ -160,7 +160,7 @@ def coupJoueur():
                     ligneUn[1] ="o"
             else:
                 print("erreur")
-        elif Reponse == "b1" or Reponse == "B1":
+        elif Reponse == "b1" or Reponse == "B1" or Reponse =="1b" or Reponse == "1B":
             if ligneUn[2] != "":
                 print("yolo")
                 coupJoueur()
@@ -171,7 +171,7 @@ def coupJoueur():
                     ligneUn[2] ="o"
             else:
                 print("erreur")
-        elif Reponse == "c1" or Reponse == "C3":
+        elif Reponse == "c1" or Reponse == "C3" or Reponse =="1c" or Reponse == "1C":
             if ligneUn[3] != "":
                 print("yolo")
                 coupJoueur()
@@ -182,7 +182,7 @@ def coupJoueur():
                     ligneUn[3] ="o"
             else:
                 print("erreur")
-        elif Reponse == "a2" or Reponse == "A2":
+        elif Reponse == "a2" or Reponse == "A2" or Reponse == "2a" or Reponse =="2A":
             if ligneDeux[1] != "":
                 print("yolo")
                 coupJoueur()
@@ -193,7 +193,7 @@ def coupJoueur():
                     ligneDeux[1] ="o"
             else:
                 print("erreur")
-        elif Reponse == "b2" or Reponse == "B2":
+        elif Reponse == "b2" or Reponse == "B2" or Reponse =="2b" or Reponse == "2B":
             if ligneDeux[2] != "":
                 print("yolo")
                 coupJoueur()
@@ -204,7 +204,7 @@ def coupJoueur():
                     ligneDeux[2] ="o"
             else:
                 print("erreur")
-        elif Reponse == "c2" or Reponse == "C2":
+        elif Reponse == "c2" or Reponse == "C2" or Reponse =="2c" or Reponse == "2C":
             if ligneDeux[3] != "":
                 print("yolo")
                 coupJoueur()
@@ -215,7 +215,7 @@ def coupJoueur():
                     ligneDeux[3] ="o"
             else:
                 print("erreur")
-        elif Reponse == "a3" or Reponse == "A3":
+        elif Reponse == "a3" or Reponse == "A3" or Reponse == "3a" or Reponse =="3A":
             if ligneTrois[1] != "":
                 print("yolo")
                 coupJoueur()
@@ -226,7 +226,7 @@ def coupJoueur():
                     ligneTrois[1] ="o"
             else:
                 print("erreur")
-        elif Reponse == "b3" or Reponse == "B3":
+        elif Reponse == "b3" or Reponse == "B3" or Reponse =="3b" or Reponse == "3B":
             if ligneTrois[2] != "":
                 print("yolo")
                 coupJoueur()
@@ -237,7 +237,7 @@ def coupJoueur():
                     ligneTrois[2] ="o"
             else:
                 print("erreur")
-        elif Reponse == "c3" or Reponse == "C3":
+        elif Reponse == "c3" or Reponse == "C3" or Reponse =="3c" or Reponse == "3C":
             if ligneTrois[3] != "":
                 print("yolo")
                 coupJoueur()
@@ -269,8 +269,9 @@ def Bot():
     colonneTrois = [ligneUn[3],ligneDeux[3],ligneTrois[3]]
     diagoUn = [colonneUn[0],colonneDeux[1],colonneTrois[2]]
     diagoDeux = [colonneUn[2],colonneDeux[1],colonneTrois[0]]
+    
     #il vas analyse le premier coup du joueur pour savoir qu'elle est le meuilleurs coup possible
-    if compteTour == 1:
+    if afm == 0:
         if ligneUn[1] == 'x' or ligneUn[3] == 'x' or ligneTrois[1] == 'x' or ligneTrois[3] == 'x':
             ligneDeux[2] = 'o'
             afm = 1
@@ -398,6 +399,18 @@ def Bot():
                                 diagoDeux[i] = 'o'
                                 ligneUn[3] = diagoDeux[2];ligneDeux[2] = diagoDeux[1];ligneTrois[1] = diagoDeux[0]
                                 return
+                if diagoUn.count('o') == 1:
+                    for i in range(len(diagoUn)):
+                        if diagoUn[i] == '':
+                            diagoUn[i] = 'o'
+                            ligneUn[1] = diagoUn[0];ligneDeux[2] = diagoUn[1];ligneTrois[3] = diagoUn[2]
+                            return
+                if diagoDeux.count('o') == 1:
+                    for i in range(len(diagoDeux)):
+                        if diagoDeux[i] == '':
+                            diagoDeux[i] = 'o'
+                            ligneUn[3] = diagoDeux[2];ligneDeux[2] = diagoDeux[1];ligneTrois[1] = diagoDeux[0]
+                            return              
                 if ligneUn.count('o') == 1:
                     for i in range(1, len(ligneUn)):
                         if ligneUn[i] == '':
@@ -431,18 +444,6 @@ def Bot():
                             colonneTrois[i] = 'o'
                             ligneUn[3] = colonneTrois[0];ligneDeux[3] = colonneTrois[1];ligneTrois[3] = colonneTrois[2]
                             return
-                if diagoUn.count('o') == 1:
-                    for i in range(len(diagoUn)):
-                        if diagoUn[i] == '':
-                            diagoUn[i] = 'o'
-                            ligneUn[1] = diagoUn[0];ligneDeux[2] = diagoUn[1];ligneTrois[3] = diagoUn[2]
-                            return
-                if diagoDeux.count('o') == 1:
-                    for i in range(len(diagoDeux)):
-                        if diagoDeux[i] == '':
-                            diagoDeux[i] = 'o'
-                            ligneUn[3] = diagoDeux[0];ligneDeux[2] = diagoDeux[1];ligneTrois[1] = diagoDeux[2]
-                            return              
 #cette variable sert juste a activé les explication ou non
 explication = 0
 #la ou tout commence, c'est la ou on explique les règle et qu'il va choisir contre qui il joue
