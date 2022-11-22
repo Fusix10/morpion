@@ -51,6 +51,7 @@ def Restart():
     global compteTour
     global encore
     global Tableau
+    global fm
     print("yo bande de débile tu veux retenter ?")
     encore = input("-1 = retenter || -2 = j'abandone car jsui nul: ")
     if not encore in ['1','2']:
@@ -66,6 +67,7 @@ def Restart():
             ligneTrois =["3","","",""]
             compteTour = 0
             encore = 0
+            fm = 0
 
             colonneUn = [ligneUn[1],ligneDeux[1],ligneTrois[1]]
             colonneDeux = [ligneUn[2],ligneDeux[2],ligneTrois[2]]
@@ -252,7 +254,7 @@ def coupJoueur():
                     ligneTrois[3] ="o"
             else:
                 print("erreur")
-fm=0
+fm = 0
 def Bot():
     global ligneDeux
     global ligneUn
@@ -264,6 +266,7 @@ def Bot():
     global diagoUn
     global gagnant
     global Tableau
+    global compteTour
     global fm
     TableauRobot = [ligneUn[1],ligneUn[2],ligneUn[3],ligneDeux[1],ligneDeux[2],ligneDeux[3],ligneTrois[1],ligneTrois[2],ligneTrois[3]]
     colonneUn = [ligneUn[1],ligneDeux[1],ligneTrois[1]]
@@ -271,30 +274,30 @@ def Bot():
     colonneTrois = [ligneUn[3],ligneDeux[3],ligneTrois[3]]
     diagoUn = [colonneUn[0],colonneDeux[1],colonneTrois[2]]
     diagoDeux = [colonneUn[2],colonneDeux[1],colonneTrois[0]]
-    if fm == 0:
+    if compteTour == 1:
         if ligneUn[1] == 'x' or ligneUn[3] == 'x' or ligneTrois[1] == 'x' or ligneTrois[3] == 'x':
             ligneDeux[2] = 'o'
             fm = 1
             return
-        elif ligneDeux[2] == 'x':
+        if ligneDeux[2] == 'x':
             ligneUn[1] = 'o'
-            fm=1
+            fm = 1
             return
-        elif ligneUn[2] == 'x':
+        if ligneUn[2] == 'x':
             ligneTrois = 'o'
-            fm=1
+            fm = 1
             return
-        elif ligneDeux[1] == 'x':
-            ligneUn[3]
-            fm=1
+        if ligneDeux[1] == 'x':
+            ligneUn[3] = 'o'
+            fm = 1
             return
-        elif ligneTrois[2] == 'x':
-            ligneUn[1] = 'x'
-            fm=1
+        if ligneTrois[2] == 'x':
+            ligneUn[1] = 'o'
+            fm = 1
             return
-        elif ligneDeux[3] == 'x':
+        if ligneDeux[3] == 'x':
             ligneTrois[1] = 'o'
-            fm=1
+            fm = 1
             return
     if fm == 1:
         for i in TableauRobot:
@@ -304,81 +307,145 @@ def Bot():
                         if ligneUn[i] == '':
                             ligneUn[i] = 'o'
                             return
-                elif ligneDeux.count('o') == 2:
+                if ligneDeux.count('o') == 2:
                     for i in range(1, len(ligneDeux)):
                         if ligneDeux[i] == '':
                             ligneDeux[i] = 'o'
                             return
-                elif ligneTrois.count('o') == 2:
+                if ligneTrois.count('o') == 2:
                     for i in range(1, len(ligneTrois)):
                         if ligneTrois[i] == '':
                             ligneTrois[i] = 'o'
                             return
-                elif colonneUn.count('o') == 2:
+                if colonneUn.count('o') == 2:
                     for i in range(len(colonneUn)):
                         if colonneUn[i] == '':
                             colonneUn[i] = 'o'
+                            ligneUn[1] = colonneUn[0];ligneDeux[1] = colonneUn[1];ligneTrois[1] = colonneUn[2]
                             return
-                elif colonneDeux.count('o') == 2:
+                if colonneDeux.count('o') == 2:
                     for i in range(len(colonneDeux)):
                         if colonneDeux[i] == '':
                             colonneDeux[i] = 'o'
+                            ligneUn[2] = colonneDeux[0];ligneDeux[2] = colonneDeux[1];ligneTrois[2] = colonneDeux[2]
                             return
-                elif colonneTrois.count('o') == 2:
+                if colonneTrois.count('o') == 2:
                     for i in range(len(colonneTrois)):
                         if colonneTrois[i] == '':
                             colonneTrois[i] = 'o'
+                            ligneUn[3] = colonneTrois[0];ligneDeux[3] = colonneTrois[1];ligneTrois[3] = colonneTrois[2]
                             return
-                elif diagoUn.count('o') == 2:
+                if diagoUn.count('o') == 2:
                     for i in range(len(diagoUn)):
                         if diagoUn[i] == '':
                             diagoUn[i] = 'o'
+                            ligneUn[1] = diagoUn[0];ligneDeux[2] = diagoUn[1];ligneTrois[3] = diagoUn[2]
                             return
-                elif diagoDeux.count('o') == 2:
+                if diagoDeux.count('o') == 2:
                     for i in range(len(diagoDeux)):
                         if diagoDeux[i] == '':
                             diagoDeux[i] = 'o'
-                            return            
-                elif ligneUn.count('x') == 2:
+                            ligneUn[3] = diagoDeux[2];ligneDeux[2] = diagoDeux[1];ligneTrois[1] = diagoDeux[0]
+                            return 
+                if ligneUn.count('')>= 1:                     
+                    if ligneUn.count('x') == 2:
+                        for i in range(1, len(ligneUn)):
+                            if ligneUn[i] == '':
+                                ligneUn[i] = 'o'
+                                return
+                if ligneDeux.count('')>= 1:                
+                    if ligneDeux.count('x') == 2:
+                        for i in range(1, len(ligneDeux)):
+                            if ligneDeux[i] == '':
+                                ligneDeux[i] = 'o'
+                                return
+                if ligneTrois.count('')>= 1:
+                    if ligneTrois.count('x') == 2:
+                        for i in range(1, len(ligneTrois)):
+                            if ligneTrois[i] == '':
+                                ligneTrois[i] = 'o'
+                                return
+                if colonneUn.count('')>= 1:
+                    if colonneUn.count('x') == 2:
+                        for i in range(len(colonneUn)):
+                            if colonneUn[i] == '':
+                                colonneUn[i] = 'o'
+                                ligneUn[1] = colonneUn[0];ligneDeux[1] = colonneUn[1];ligneTrois[1] = colonneUn[2]
+                                return
+                if colonneDeux.count('')>= 1:                
+                    if colonneDeux.count('x') == 2:
+                        for i in range(len(colonneDeux)):
+                            if colonneDeux[i] == '':
+                                colonneDeux[i] = 'o'
+                                ligneUn[2] = colonneDeux[0];ligneDeux[2] = colonneDeux[1];ligneTrois[2] = colonneDeux[2]
+                                return
+                if colonneTrois.count('')>= 1:
+                    if colonneTrois.count('x') == 2:
+                        for i in range(len(colonneTrois)):
+                            if colonneTrois[i] == '':
+                                colonneTrois[i] = 'o'
+                                ligneUn[3] = colonneTrois[0];ligneDeux[3] = colonneTrois[1];ligneTrois[3] = colonneTrois[2]
+                                return
+                if diagoUn.count('')>= 1:                
+                    if diagoUn.count('x') == 2:
+                        for i in range(len(diagoUn)):
+                            if diagoUn[i] == '':
+                                diagoUn[i] = 'o'
+                                ligneUn[1] = diagoUn[0];ligneDeux[2] = diagoUn[1];ligneTrois[3] = diagoUn[2]
+                                return
+                if diagoDeux.count('')>= 1:
+                    if diagoDeux.count('x') == 2:
+                        for i in range(len(diagoDeux)):
+                            if diagoDeux[i] == '':
+                                diagoDeux[i] = 'o'
+                                ligneUn[3] = diagoDeux[2];ligneDeux[2] = diagoDeux[1];ligneTrois[1] = diagoDeux[0]
+                                return
+                if ligneUn.count('o') == 1:
                     for i in range(1, len(ligneUn)):
                         if ligneUn[i] == '':
                             ligneUn[i] = 'o'
                             return
-                elif ligneDeux.count('x') == 2:
+                if ligneDeux.count('o') == 1:
                     for i in range(1, len(ligneDeux)):
                         if ligneDeux[i] == '':
                             ligneDeux[i] = 'o'
                             return
-                elif ligneTrois.count('x') == 2:
+                if ligneTrois.count('o') == 1:
                     for i in range(1, len(ligneTrois)):
                         if ligneTrois[i] == '':
                             ligneTrois[i] = 'o'
                             return
-                elif colonneUn.count('x') == 2:
+                if colonneUn.count('o') == 1:
                     for i in range(len(colonneUn)):
                         if colonneUn[i] == '':
                             colonneUn[i] = 'o'
+                            ligneUn[1] = colonneUn[0];ligneDeux[1] = colonneUn[1];ligneTrois[1] = colonneUn[2]
                             return
-                elif colonneDeux.count('x') == 2:
+                if colonneDeux.count('o') == 1:
                     for i in range(len(colonneDeux)):
                         if colonneDeux[i] == '':
                             colonneDeux[i] = 'o'
+                            ligneUn[2] = colonneDeux[0];ligneDeux[2] = colonneDeux[1];ligneTrois[2] = colonneDeux[2]
                             return
-                elif colonneTrois.count('x') == 2:
+                if colonneTrois.count('o') == 1:
                     for i in range(len(colonneTrois)):
                         if colonneTrois[i] == '':
                             colonneTrois[i] = 'o'
+                            ligneUn[3] = colonneTrois[0];ligneDeux[3] = colonneTrois[1];ligneTrois[3] = colonneTrois[2]
                             return
-                elif diagoUn.count('x') == 2:
+                if diagoUn.count('o') == 1:
                     for i in range(len(diagoUn)):
                         if diagoUn[i] == '':
                             diagoUn[i] = 'o'
+                            ligneUn[1] = diagoUn[0];ligneDeux[2] = diagoUn[1];ligneTrois[3] = diagoUn[2]
                             return
-                elif diagoDeux.count('x') == 2:
+                if diagoDeux.count('o') == 1:
                     for i in range(len(diagoDeux)):
                         if diagoDeux[i] == '':
                             diagoDeux[i] = 'o'
-                            return
+                            ligneUn[3] = diagoDeux[0];ligneDeux[2] = diagoDeux[1];ligneTrois[1] = diagoDeux[2]
+                            return              
+
 explication = 0
 def StarterGame():    
     global explication
@@ -434,13 +501,12 @@ def StarterGame():
                     Jun = Jdeux + 1
                     coupJoueur()
                     compteTour = compteTour + 1
-                    print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
                     winner()
                 if not gagnant in [0,1,2]:   
                     Jdeux = Jun + 1
                     Bot()
-                    compteTour = compteTour + 1
                     print(Tableau[0]);print(Tableau[1]);print(Tableau[2]);print(Tableau[3])
+                    compteTour = compteTour + 1
                     winner()
             if gagnant == 0:
                 print("matche nul, vous êtes nul !")     
